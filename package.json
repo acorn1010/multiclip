@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "deploy": "npx prisma db push",
     "dev": "next dev",
     "postinstall": "prisma generate",
     "lint": "next lint",
