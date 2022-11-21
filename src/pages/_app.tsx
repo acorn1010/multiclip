@@ -8,7 +8,11 @@ import { SiteTheme } from "../client/theme/SiteTheme";
 import { MainContainer } from "../client/container/MainContainer";
 import { Work_Sans } from "@next/font/google";
 
-const workSans = Work_Sans({ subsets: ["latin"], display: "swap" });
+const workSans = Work_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--worksans-font",
+});
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,

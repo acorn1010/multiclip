@@ -6,6 +6,9 @@ const darkTheme = createTheme({
   palette: {
     mode: "dark",
   },
+  typography: {
+    fontFamily: "var(--worksans-font)",
+  },
 });
 
 export function SiteTheme(props: PropsWithChildren<{}>) {
