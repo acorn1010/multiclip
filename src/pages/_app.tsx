@@ -3,8 +3,9 @@ import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 
 import { trpc } from "../utils/trpc";
-
-import "../styles/globals.css";
+import Head from "next/head";
+import {SiteTheme} from "../client/theme/SiteTheme";
+import {MainContainer} from "../client/container/MainContainer";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -12,7 +13,16 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <Head>
+        <title>Multiclip</title>
+        <meta name="description" content="Edit and upload your best Twitch clips to TikTok, YouTube, Instagram, and more with ease." />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <SiteTheme>
+        <MainContainer>
+          <Component {...pageProps} />
+        </MainContainer>
+      </SiteTheme>
     </SessionProvider>
   );
 };
