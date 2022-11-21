@@ -4,8 +4,11 @@ import { SessionProvider } from "next-auth/react";
 
 import { trpc } from "../utils/trpc";
 import Head from "next/head";
-import {SiteTheme} from "../client/theme/SiteTheme";
-import {MainContainer} from "../client/container/MainContainer";
+import { SiteTheme } from "../client/theme/SiteTheme";
+import { MainContainer } from "../client/container/MainContainer";
+import { Work_Sans } from "@next/font/google";
+
+const workSans = Work_Sans({ subsets: ["latin"], display: "swap" });
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -15,14 +18,19 @@ const MyApp: AppType<{ session: Session | null }> = ({
     <SessionProvider session={session}>
       <Head>
         <title>Multiclip</title>
-        <meta name="description" content="Edit and upload your best Twitch clips to TikTok, YouTube, Instagram, and more with ease." />
+        <meta
+          name="description"
+          content="Edit and upload your best Twitch clips to TikTok, YouTube, Instagram, and more with ease."
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <SiteTheme>
-        <MainContainer>
-          <Component {...pageProps} />
-        </MainContainer>
-      </SiteTheme>
+      <div className={workSans.className}>
+        <SiteTheme>
+          <MainContainer>
+            <Component {...pageProps} />
+          </MainContainer>
+        </SiteTheme>
+      </div>
     </SessionProvider>
   );
 };
