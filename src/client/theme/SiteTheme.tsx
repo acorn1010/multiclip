@@ -18,6 +18,19 @@ const darkTheme = createTheme({
   typography: {
     fontFamily: 'var(--worksans-font)',
   },
+  components: {
+    MuiTooltip: {
+      styleOverrides: {
+        popper: {
+          pointerEvents: 'none',
+        },
+        tooltip: {
+          backgroundColor: 'rgba(36, 36, 36, .91)',
+          fontSize: '.9rem',
+        },
+      },
+    },
+  },
 });
 
 export function SiteTheme(props: PropsWithChildren<{}>) {

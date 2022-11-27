@@ -8,5 +8,24 @@ declare module "next-auth" {
     user?: {
       id: string;
     } & DefaultSession["user"];
+
+    /** The userId of the provider. The Twitch provider account id is used to query Twitch's GraphQL. */
+    providerAccountId: string;
+
+    error?: 'RefreshAccessTokenError';
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    accessToken: string | undefined;
+
+    /** The token expiration timestamp in milliseconds since Unix Epoch. */
+    accessTokenExpires: number;
+
+    error?: 'RefreshAccessTokenError';
+
+    /** The userId of the provider. The Twitch provider account id is used to query Twitch's GraphQL. */
+    providerAccountId: string;
   }
 }
