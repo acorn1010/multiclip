@@ -3,6 +3,7 @@ import {trpc} from "../../utils/trpc";
 import {Card, CardActionArea, CardMedia} from "@mui/material";
 import {OverflowText} from "../text/OverflowText";
 import {UsersIcon} from "../icons/UsersIcon";
+import type {TwitchClip} from "../../server/common/third_party/twitch/TwitchGraphApi";
 
 const TwitchClipsGridStyled = styled('div')(({theme}) => ({
   display: 'grid',
