@@ -1,8 +1,7 @@
 import {styled} from "@mui/system";
 import {trpc} from "../../utils/trpc";
-import {Card, CardActionArea, CardMedia, Link} from "@mui/material";
+import {Card, CardActionArea, CardMedia} from "@mui/material";
 import {OverflowText} from "../text/OverflowText";
-import type {TwitchClip} from "../../server/trpc/router/clips";
 import {UsersIcon} from "../icons/UsersIcon";
 
 const TwitchClipsGridStyled = styled('div')(({theme}) => ({
@@ -23,7 +22,7 @@ const TwitchClipsGridStyled = styled('div')(({theme}) => ({
 
 /** Displays the logged-in user's Twitch clips. */
 export function TwitchClipsGrid() {
-  const { isError, isLoading, data } = trpc.clips.getAll.useQuery({ dateRange: '7days' });
+  const { isError, isLoading, data } = trpc.clips.getAll.useQuery({ dateRange: '30days' });
 
   if (isError) {
     return <p>Failed to load Twitch Clips :(</p>;
