@@ -40,3 +40,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# ignore package lock files. Without this, vercel deploy breaks?
+package-lock.json
+pnpm-lock.yaml
