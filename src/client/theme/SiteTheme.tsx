@@ -1,5 +1,5 @@
 import {GlobalStyles, ThemeProvider} from "@mui/system";
-import { createTheme, CssBaseline } from "@mui/material";
+import {createTheme, CssBaseline} from "@mui/material";
 import type { PropsWithChildren } from "react";
 import {Work_Sans} from "@next/font/google";
 

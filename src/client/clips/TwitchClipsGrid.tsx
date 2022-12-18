@@ -1,9 +1,10 @@
 import {styled} from "@mui/system";
-import {trpc} from "../../utils/trpc";
-import {Card, CardActionArea, CardMedia} from "@mui/material";
+import {type RouterInputs, trpc} from "../../utils/trpc";
+import {Card, CardActionArea, CardMedia, FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import {OverflowText} from "../text/OverflowText";
 import {UsersIcon} from "../icons/UsersIcon";
 import type {TwitchClip} from "../../server/common/third_party/twitch/TwitchGraphApi";
+import {useState} from "react";
 
 const TwitchClipsGridStyled = styled('div')(({theme}) => ({
   display: 'grid',
@@ -21,9 +22,37 @@ const TwitchClipsGridStyled = styled('div')(({theme}) => ({
   },
 }));
 
+type DateRange = RouterInputs['clips']['getAll']['dateRange'];
+
 /** Displays the logged-in user's Twitch clips. */
 export function TwitchClipsGrid() {
-  const { isError, isLoading, data } = trpc.clips.getAll.useQuery({ dateRange: '30days' });
+  const [dateRange, setDateRange] = useState('30days' as DateRange);
+
+  return (
+      <div>
+        <FormControl fullWidth sx={{mt: 1, mb: 1}}>
+          <InputLabel>Time Period</InputLabel>
+          <Select
+              value={dateRange}
+              label="Time Period"
+              onChange={(e) => {
+                setDateRange(e.target.value as DateRange);
+              }}
+          >
+            <MenuItem value='7days'>7 Days</MenuItem>
+            <MenuItem value='30days'>30 Days</MenuItem>
+            <MenuItem value='allTime'>All Time</MenuItem>
+          </Select>
+        </FormControl>
+        <TwitchClipsGridStyled>
+          <TwitchClipsGridClips dateRange={dateRange} />
+        </TwitchClipsGridStyled>
+      </div>
+  );
+}
+
+function TwitchClipsGridClips({dateRange}: {dateRange: DateRange}) {
+  const { isError, isLoading, data } = trpc.clips.getAll.useQuery({ dateRange });
 
   if (isError) {
     return <p>Failed to load Twitch Clips :(</p>;
@@ -31,11 +60,7 @@ export function TwitchClipsGrid() {
     return <p>Loading Twitch Clips...</p>;
   }
 
-  return (
-      <TwitchClipsGridStyled>
-        {data?.map(clip => <TwitchClipCard key={clip.id} clip={clip} />)}
-      </TwitchClipsGridStyled>
-  );
+  return <>{data?.map(clip => <TwitchClipCard key={clip.id} clip={clip} />)}</>;
 }
 
 const TwitchCard = styled(Card)(() => ({
