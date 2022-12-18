@@ -12,6 +12,8 @@
     "proxy": "pscale org switch multiclip && pscale connect multiclips main --port 3309"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.10.16",
     "@mui/system": "^5.10.16",
     "@next-auth/prisma-adapter": "^1.0.5",
