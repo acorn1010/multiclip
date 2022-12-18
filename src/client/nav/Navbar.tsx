@@ -15,7 +15,7 @@ export function Navbar() {
   return (
       <AppBar position='static'>
         <Toolbar>
-          <Typography variant='h6' sx={{flexGrow: 1}}>Multiclip</Typography>
+          <Typography variant='h6' sx={{flexGrow: 1}}>Acorn1010</Typography>
           <LoginButton />
         </Toolbar>
       </AppBar>

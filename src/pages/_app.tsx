@@ -18,7 +18,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <SessionProvider session={session} refetchOnWindowFocus={false}>
       <Head>
-        <title>Multiclip</title>
+        <title>Acorn1010</title>
         <meta
           name="description"
           content="Edit and upload your best Twitch clips to TikTok, YouTube, Instagram, and more with ease."
