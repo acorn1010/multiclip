@@ -12,8 +12,8 @@ type OverflowTextProps = {
 } & Pick<TooltipProps, 'placement'>;
 
 /**
- * Returns a <Typography> element wrapped in a tooltip. The tooltip will only be visible when the
- * <Typography> element doesn't have enough space (e.g. it has an ellipsis).
+ * Returns a <p> element wrapped in a tooltip. The tooltip will only be visible when the <p> element doesn't have enough
+ * space (e.g. it has an ellipsis).
  */
 export function OverflowText(props: OverflowTextProps) {
   const {center, className, placement, style, title, ...rest} = props;
