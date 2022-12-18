@@ -46,13 +46,13 @@ function TwitchClipsGridClips({clips}: {clips: TwitchClip[] | undefined}) {
 }
 
 function TwitchClipCard({clip}: {clip: TwitchClip}) {
-  const {title, thumbnail_url, view_count, url} = clip;
-  console.log('clip', clip);
+  const {title, thumbnail_url, view_count, download_url} = clip;
+
   // TODO(acorn1010): Allow navigating to VOD at clip location.
   //  e.g.: https://player.twitch.tv/?video=v${video_id}&parent=localhost&t=${vod_offset}
   return (
       <Card className='hover:brightness-110 group'>
-        <CardActionArea component='a' href={url} target='_blank'>
+        <CardActionArea component='a' href={download_url} target='_blank'>
           <CardMedia component='img' alt={title} image={thumbnail_url} />
           <OverflowText
               className='px-2 text-base group-hover:hidden'

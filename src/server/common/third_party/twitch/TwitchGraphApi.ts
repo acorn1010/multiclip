@@ -41,7 +41,10 @@ export type TwitchClip = {
   /** Offset into the VOD in seconds. */
   vod_offset: number,
 
-  /** URL of the Twitch clip thumbnail (e.g. "https://clips-media-assets2.twitch.tv") */
+  /** URL of the Twitch clip to download (e.g. "https://clips-media-assets2.twitch.tv/foo/foo.mp4"). */
+  download_url: string,
+
+  /** URL of the Twitch clip thumbnail (e.g. "https://clips-media-assets2.twitch.tv/foo/foo-480x272.jpg") */
   thumbnail_url: string,
 
   /** Duration of the clip in seconds (floating point). */
@@ -84,6 +87,7 @@ async function queryTwitchClips(username: string, durationMs?: number): Promise<
       vod_offset: 0,
       view_count: viewCount,
       video_id: '',
+      download_url: getDownloadLink(thumbnailURL),
       thumbnail_url: resizeThumbnail(thumbnailURL),
       title,
       language: language?.toLowerCase() ?? 'en',
@@ -105,6 +109,12 @@ function resizeThumbnail(url: string) {
     return `${base}-preview-${480}x${272}.${extension}`;
   }
   return url;
+}
+
+/** Given a `thumbnailURL`, returns a link to download the clip. */
+function getDownloadLink(url: string) {
+  const m = url.match(/^(.*)-preview-\d+x\d+\..+$/);
+  return m ? `${m[1]}.mp4` : '';
 }
 
 type TwitchClipResult = {
