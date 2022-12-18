@@ -14,7 +14,7 @@ export function TwitchClipsGrid() {
 
   return (
       <div>
-        <h2>Clips{data ? ` (${data.length})` : ''}</h2>
+        <h2>{data ? `${data.length} ` : ''}CLIPS</h2>
         <FormControl className='my-2' fullWidth>
           <InputLabel>Time Period</InputLabel>
           <Select
