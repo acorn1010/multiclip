@@ -1,9 +1,10 @@
 import {type RouterInputs, trpc} from "../../utils/trpc";
 import {Card, CardActionArea, CardMedia, FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import {OverflowText} from "../text/OverflowText";
-import {UsersIcon} from "../icons/UsersIcon";
 import type {TwitchClip} from "../../server/common/third_party/twitch/TwitchGraphApi";
 import {useState} from "react";
+import {FaUsers} from "react-icons/fa";
+import clsx from "clsx";
 
 type DateRange = RouterInputs['clips']['getAll']['dateRange'];
 
@@ -50,16 +51,19 @@ function TwitchClipCard({clip}: {clip: TwitchClip}) {
   // TODO(acorn1010): Allow navigating to VOD at clip location.
   //  e.g.: https://player.twitch.tv/?video=v${video_id}&parent=localhost&t=${vod_offset}
   return (
-      <Card className='hover:brightness-110'>
+      <Card className='hover:brightness-110 group'>
         <CardActionArea component='a' href={url} target='_blank'>
           <CardMedia component='img' alt={title} image={thumbnail_url} />
           <OverflowText
-              className='px-2 text-base'
+              className='px-2 text-base group-hover:hidden'
               title={title}
               style={{backgroundColor: 'rgba(0,0,0,0.45)', position: 'absolute', top: 0}}
               placement='top' />
-          <p className='items-center bg-black bg-opacity-80 rounded-tl-md flex absolute bottom-0 text-base m-0 py-1 px-2 right-0 leading-none'>
-            <UsersIcon className='opacity-90 mr-2 h-[14px]' />
+          <p className={clsx(
+              'items-center bg-black bg-opacity-80 rounded-tl-md flex absolute bottom-0 text-base m-0 py-1 px-2 right-0 leading-none',
+              'group-hover:hidden'
+          )}>
+            <FaUsers className='opacity-90 mr-2 h-[14px]'/>
             {view_count}
           </p>
         </CardActionArea>

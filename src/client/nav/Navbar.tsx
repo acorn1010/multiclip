@@ -1,7 +1,6 @@
 import {
   AppBar,
   Toolbar,
-  Typography
 } from "@mui/material";
 import acorn from './acorn.png';
 import Image from 'next/image';
