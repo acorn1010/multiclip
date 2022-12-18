@@ -4,7 +4,7 @@ import {
   Typography
 } from "@mui/material";
 import React, {type PropsWithChildren} from "react";
-import {FaDiscord, FaGithub, FaRedditAlien, FaTiktok, FaTwitch, FaTwitter, FaYoutube} from "react-icons/fa";
+import {FaDiscord, FaGithub, FaTiktok, FaTwitch, FaTwitter, FaYoutube} from "react-icons/fa";
 
 export function Navbar() {
   return (
