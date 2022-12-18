@@ -12,7 +12,7 @@ export default function Home() {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container maxWidth='xl' sx={{marginTop: 2}}>
+      <Container className='mt-4' maxWidth='xl'>
         <TwitchClipsGrid />
       </Container>
     </>

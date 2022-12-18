@@ -1,0 +1,22 @@
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-zinc-900 text-zinc-100;
+
+  /* Kludge: This fixes a bug? in Firefox and Chrome where undefined variables in CSS break the filter for tailwind. */
+  --noop-filter: opacity(100%);
+  --tw-blur: var(--noop-filter);
+  --tw-brightness: var(--noop-filter);
+  --tw-contrast: var(--noop-filter);
+  --tw-grayscale: var(--noop-filter);
+  --tw-hue-rotate: var(--noop-filter);
+  --tw-invert: var(--noop-filter);
+  --tw-saturate: var(--noop-filter);
+  --tw-sepia: var(--noop-filter);
+  --tw-drop-shadow: var(--noop-filter);
+}
+
+path {
+  @apply fill-current !important;
+}

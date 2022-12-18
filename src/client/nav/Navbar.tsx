@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import {signIn, signOut, useSession} from "next-auth/react";
 import {useState} from "react";
-import {styled} from "@mui/system";
 
 export function Navbar() {
   return (
@@ -23,12 +22,6 @@ export function Navbar() {
   );
 }
 
-const LoginButtonStyled = styled(Button)`
-  &:hover {
-    background-color: rgba(255, 255, 255, .2);
-  }
-`;
-
 function LoginButton() {
   const {data} = useSession();
 
@@ -39,7 +32,7 @@ function LoginButton() {
   }
 
   // Not logged in
-  return <LoginButtonStyled onClick={() => signIn()}>Login</LoginButtonStyled>;
+  return <Button className='hover:bg-lighten' onClick={() => signIn()}>Login</Button>;
 }
 
 /** Avatar button that shows when a user is logged in. */

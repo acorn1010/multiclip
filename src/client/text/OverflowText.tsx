@@ -1,11 +1,7 @@
 import React, {type CSSProperties, useCallback, useState} from 'react';
 import useResizeObserver from 'use-resize-observer';
-import {styled} from "@mui/system";
-import {Tooltip, type TooltipProps, Typography} from "@mui/material";
-
-const OverflowTextStyled = styled(Typography)`
-  max-width: fit-content;
-`;
+import {Tooltip, type TooltipProps} from "@mui/material";
+import clsx from "clsx";
 
 type OverflowTextProps = {
   center?: boolean,
@@ -41,17 +37,16 @@ export function OverflowText(props: OverflowTextProps) {
   const centerStyle: CSSProperties = center ? {display: 'flex', justifyContent: 'center'} : {};
   return (
       <Tooltip title={isOpen ? title : ''} placement={placement ?? 'bottom'}>
-        <div style={{alignSelf: 'center', minWidth: 0, width: '100%', ...centerStyle, ...style}}>
-          <OverflowTextStyled
-              className={className}
-              noWrap
+        <div className='self-center min-w-0 w-full' style={{...centerStyle, ...style}}>
+          <p
+              className={clsx('max-w-fit truncate leading-none m-0 py-1 drop-shadow-[0_0_2px_rgba(0,0,0,1)]', className)}
               {...rest}
               ref={(e: HTMLParagraphElement) => {
                 ref(e);
                 resizeCallback(e);
               }}>
             {title}
-          </OverflowTextStyled>
+          </p>
         </div>
       </Tooltip>
   );

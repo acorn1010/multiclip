@@ -9,7 +9,7 @@ const font = Work_Sans({
   subsets: ['latin'],
   display: 'swap',
   variable: '--worksans-font',
-})
+});
 
 const darkTheme = createTheme({
   palette: {
@@ -18,6 +18,9 @@ const darkTheme = createTheme({
   typography: {
     fontFamily: 'var(--worksans-font)',
   },
+  transitions: {
+    create: () => 'none',
+  },
   components: {
     MuiTooltip: {
       styleOverrides: {
@@ -25,7 +28,7 @@ const darkTheme = createTheme({
           pointerEvents: 'none',
         },
         tooltip: {
-          backgroundColor: 'rgba(36, 36, 36, .91)',
+          backgroundColor: 'rgba(39, 39, 42, .90)',
           fontSize: '.9rem',
         },
       },
