@@ -3,6 +3,8 @@ import {
   Toolbar,
   Typography
 } from "@mui/material";
+import acorn from './acorn.png';
+import Image from 'next/image';
 import React, {type PropsWithChildren} from "react";
 import {FaDiscord, FaGithub, FaTiktok, FaTwitch, FaTwitter, FaYoutube} from "react-icons/fa";
 
@@ -10,7 +12,9 @@ export function Navbar() {
   return (
       <AppBar position='static'>
         <Toolbar>
-          <Typography variant='h6'>Acorn1010</Typography>
+          <h1 className='flex gap-4 text-lg font-medium'>
+            <Image src={acorn} alt='acorn avatar' height={32} width={32} /> Acorn1010
+          </h1>
           <Links />
         </Toolbar>
       </AppBar>
