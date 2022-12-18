@@ -10,9 +10,11 @@ type DateRange = RouterInputs['clips']['getAll']['dateRange'];
 /** Displays the logged-in user's Twitch clips. */
 export function TwitchClipsGrid() {
   const [dateRange, setDateRange] = useState('30days' as DateRange);
+  const { isError, data } = trpc.clips.getAll.useQuery({ dateRange });
 
   return (
       <div>
+        <h2>Clips{data ? ` (${data.length})` : ''}</h2>
         <FormControl className='my-2' fullWidth>
           <InputLabel>Time Period</InputLabel>
           <Select
@@ -28,22 +30,18 @@ export function TwitchClipsGrid() {
           </Select>
         </FormControl>
         <div className='grid gap-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'>
-          <TwitchClipsGridClips dateRange={dateRange} />
+          <TwitchClipsGridClips clips={isError ? [] : data} />
         </div>
       </div>
   );
 }
 
-function TwitchClipsGridClips({dateRange}: {dateRange: DateRange}) {
-  const { isError, isLoading, data } = trpc.clips.getAll.useQuery({ dateRange });
-
-  if (isError) {
-    return <p>Failed to load Twitch Clips :(</p>;
-  } else if (isLoading) {
+function TwitchClipsGridClips({clips}: {clips: TwitchClip[] | undefined}) {
+  if (!clips) {
     return <p>Loading Twitch Clips...</p>;
   }
 
-  return <>{data?.map(clip => <TwitchClipCard key={clip.id} clip={clip} />)}</>;
+  return <>{clips?.map(clip => <TwitchClipCard key={clip.id} clip={clip} />)}</>;
 }
 
 function TwitchClipCard({clip}: {clip: TwitchClip}) {

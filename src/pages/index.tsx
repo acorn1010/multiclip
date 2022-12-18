@@ -1,6 +1,5 @@
 import { Container } from "@mui/material";
 import Head from "next/head";
-
 import {TwitchClipsGrid} from "../client/clips/TwitchClipsGrid";
 
 export default function Home() {

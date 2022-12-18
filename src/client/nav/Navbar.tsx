@@ -1,57 +1,36 @@
 import {
   AppBar,
-  Avatar,
-  Button,
-  IconButton,
-  Menu,
-  MenuItem,
   Toolbar,
   Typography
 } from "@mui/material";
-import {signIn, signOut, useSession} from "next-auth/react";
-import {useState} from "react";
+import React, {type PropsWithChildren} from "react";
+import {FaDiscord, FaGithub, FaRedditAlien, FaTiktok, FaTwitch, FaTwitter, FaYoutube} from "react-icons/fa";
 
 export function Navbar() {
   return (
       <AppBar position='static'>
         <Toolbar>
-          <Typography variant='h6' sx={{flexGrow: 1}}>Acorn1010</Typography>
-          <LoginButton />
+          <Typography variant='h6'>Acorn1010</Typography>
+          <Links />
         </Toolbar>
       </AppBar>
   );
 }
 
-function LoginButton() {
-  const {data} = useSession();
-
-  // Logged in
-  if (data?.user) {
-    const {name, image} = data.user;
-    return <LoginAvatarButton name={name ?? undefined} image={image ?? undefined} />;
-  }
-
-  // Not logged in
-  return <Button className='hover:bg-lighten' onClick={() => signIn()}>Login</Button>;
+function Links() {
+  const iconClass = 'text-2xl md:text-3xl';
+  return (
+      <div className='flex gap-4 grow justify-center'>
+        <SocialLink to='https://www.twitch.tv/acorn1010'><FaTwitch className={iconClass} /></SocialLink>
+        <SocialLink to='https://www.tiktok.com/@theacorn10'><FaTiktok className={iconClass} /></SocialLink>
+        <SocialLink to='https://twitter.com/theacorn1010'><FaTwitter className={iconClass} /></SocialLink>
+        <SocialLink to='https://github.com/acorn1010'><FaGithub className={iconClass} /></SocialLink>
+        <SocialLink to='https://www.youtube.com/@Acorn10'><FaYoutube className={iconClass} /></SocialLink>
+        <SocialLink to='https://discord.gg/fwvzUh5TV3'><FaDiscord className={iconClass} /></SocialLink>
+      </div>
+  );
 }
 
-/** Avatar button that shows when a user is logged in. */
-function LoginAvatarButton(props: {name: string | undefined, image: string | undefined}) {
-  const {name, image} = props;
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
-  const close = () => setAnchorEl(null);
-  return (
-      <>
-        <IconButton size='medium' onClick={(e) => setAnchorEl(e.currentTarget)}>
-          <Avatar src={image ?? undefined} alt={`${name}'s avatar`} />
-        </IconButton>
-        <Menu anchorEl={anchorEl} keepMounted onClose={close} open={!!anchorEl}>
-          <MenuItem onClick={() => {
-            close();
-            signOut().then(() => {});
-          }}>Log Out</MenuItem>
-        </Menu>
-      </>
-  );
+function SocialLink({children, to}: PropsWithChildren<{to: string}>) {
+  return <a href={to} className='flex items-center text-zinc-400 hover:text-white' target='_blank' rel='noreferrer'>{children}</a>;
 }
