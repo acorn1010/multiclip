@@ -10,4 +10,6 @@ module.exports = {
     },
   },
   plugins: [],
+  /** Makes sure that Tailwind classes are more specific than MUI */
+  important: true,
 }
