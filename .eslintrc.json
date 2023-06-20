@@ -8,6 +8,8 @@
   "rules": {
     "@typescript-eslint/consistent-type-imports": "warn",
     "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "react/no-unescaped-entities": "off",
     "@typescript-eslint/ban-types": [
       "error",
