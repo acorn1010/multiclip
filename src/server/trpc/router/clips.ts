@@ -10,12 +10,12 @@ const DATE_RANGE_TO_DURATION = {
 
 export const clipsRouter = router({
   hello: publicProcedure
-  .input(z.object({ text: z.string().nullish() }).nullish())
-  .query(({ input }) => {
-    return {
-      greeting: `Hello ${input?.text ?? "world"}`,
-    };
-  }),
+      .input(z.object({ text: z.string().nullish() }).nullish())
+      .query(({ input }) => {
+        return {
+          greeting: `Hello ${input?.text ?? "world"}`,
+        };
+      }),
   getAll: publicProcedure
       .input(z.object({dateRange: z.enum(['7days', '30days', 'allTime'])}))
       .query(async ({input}) => {

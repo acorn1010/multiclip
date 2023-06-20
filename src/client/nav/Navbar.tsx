@@ -24,7 +24,7 @@ function Links() {
   const iconClass = 'text-2xl md:text-3xl';
   return (
       <div className='flex gap-4 grow justify-center'>
-        <SocialLink to='https://www.twitch.tv/acorn1010'><FaTwitch className={iconClass} /></SocialLink>
+        <SocialLink to='https://www.kick.com/acorn1010'><FaTwitch className={iconClass} /></SocialLink>
         <SocialLink to='https://www.tiktok.com/@theacorn10'><FaTiktok className={iconClass} /></SocialLink>
         <SocialLink to='https://twitter.com/theacorn1010'><FaTwitter className={iconClass} /></SocialLink>
         <SocialLink to='https://github.com/acorn1010'><FaGithub className={iconClass} /></SocialLink>
