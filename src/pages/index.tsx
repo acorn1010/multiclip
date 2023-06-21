@@ -31,7 +31,7 @@ function KickStream() {
   const src = 'https://kick.com/acorn1010';
   return (
     <div>
-      <h2><a className='text-white no-underline hover:underline' href={src} target='_blank' rel='noreferrer'>🔴 I'M LIVE! - ${livestream.session_title}</a></h2>
+      <h2><a className='text-white no-underline hover:underline' href={src}>🔴 I'M LIVE! - ${livestream.session_title}</a></h2>
       <iframe
         src={src}
         title={livestream.session_title}
